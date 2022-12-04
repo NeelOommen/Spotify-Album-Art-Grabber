@@ -82,7 +82,7 @@ def find_collage_size(num_images):
             j -= 1
 
 
-def create_collage(r, c, num_images):
+def create_collage(r, c, num_images, filePath, fileName):
     width = r*640
     height = c*640
 
@@ -105,10 +105,10 @@ def create_collage(r, c, num_images):
             
             collage.paste(current_image, (i,j))
 
-    collage.save('final.png')
+    collage.save(filePath + '/' +fileName + '.png')
     collage.show()
 
-def btn_function(playlist_url):
+def collage(playlist_url, filePath, fileName):
     #Get playlist ID from URL
     id = extract_id(playlist_url)
 
@@ -119,11 +119,11 @@ def btn_function(playlist_url):
     r,c = find_collage_size(num_images)
 
     #create the collage
-    create_collage(r,c,num_images)
+    create_collage(r,c,num_images, filePath, fileName)
 
     #cleanup after collage created
     cleanup(num_images)
 
 if __name__ == '__main__':
     playlist_URL = 'Put Your playlist URL here'
-    btn_function(playlist_URL)
+    collage(playlist_URL)
